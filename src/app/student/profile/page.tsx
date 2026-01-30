@@ -63,7 +63,7 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b relative z-60">
+      <header className="bg-white border-b relative" style={{ zIndex: 50 }}>
         <nav className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl sm:text-2xl font-bold text-gradient">

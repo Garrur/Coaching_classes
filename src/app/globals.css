@@ -57,18 +57,23 @@
     outline-color: theme('colors.primary.500');
   }
 
-  /* Remove gray squares on button clicks */
+  /* Remove tap highlight on touch devices but keep keyboard focus */
   button {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Visible focus indicator for keyboard navigation (WCAG 2.4.7) */
+  button:focus-visible {
+    outline: 2px solid theme('colors.primary.500');
+    outline-offset: 2px;
+  }
+
+  /* Remove default focus outline only when using mouse/touch */
+  button:focus:not(:focus-visible) {
     outline: none;
   }
 
-  button:focus,
-  button:active {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
+  /* Remove Firefox inner border */
   button::-moz-focus-inner {
     border: 0;
   }
