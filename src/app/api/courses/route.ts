@@ -4,6 +4,9 @@ import Course from '@/models/Course';
 import { requireAdmin } from '@/lib/auth';
 import User from '@/models/User';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 // GET /api/courses - Get all courses (public with filters)
 export async function GET(req: NextRequest) {
   try {
