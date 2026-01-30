@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { ArrowLeft, Mail, Phone, Calendar, Award, BookOpen, User as UserIcon } from 'lucide-react';
+import MobileNav from '@/components/MobileNav';
 
 interface UserProfile {
   _id: string;
@@ -42,6 +43,12 @@ export default function ProfilePage() {
     }
   };
 
+  const mobileNavLinks = [
+    { href: '/courses', label: 'Courses' },
+    { href: '/student/dashboard', label: 'Dashboard' },
+    { href: '/student/profile', label: 'Profile', primary: true },
+  ];
+
   if (!isLoaded || loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -56,13 +63,15 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b">
-        <nav className="container mx-auto px-6 py-4">
+      <header className="bg-white border-b relative z-60">
+        <nav className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-gradient">
+            <Link href="/" className="text-xl sm:text-2xl font-bold text-gradient">
               Classes
             </Link>
-            <div className="flex items-center gap-6">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-6">
               <Link href="/courses" className="text-gray-700 hover:text-primary-600 transition">
                 Courses
               </Link>
@@ -73,23 +82,27 @@ export default function ProfilePage() {
                 Profile
               </Link>
             </div>
+
+            {/* Mobile Navigation */}
+            <MobileNav links={mobileNavLinks} />
           </div>
         </nav>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <Link
           href="/student/dashboard"
-          className="flex items-center gap-2 text-primary-600 hover:gap-3 transition-all mb-8"
+          className="flex items-center gap-2 text-primary-600 hover:gap-3 transition-all mb-6 sm:mb-8"
         >
-          <ArrowLeft className="w-5 h-5" />
-          Back to Dashboard
+          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="text-sm sm:text-base">Back to Dashboard</span>
         </Link>
 
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">My Profile</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8">My Profile</h1>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
             {/* Profile Card */}
             <div className="md:col-span-1">
               <div className="card p-8 text-center">

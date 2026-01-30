@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Video, Calendar, Clock, IndianRupee, ArrowRight } from 'lucide-react';
+import MobileNav from '@/components/MobileNav';
 
 interface Course {
   _id: string;
@@ -55,16 +56,31 @@ export default function CoursesPage() {
   const recordedCourses = courses.filter((c) => c.courseType === 'RECORDED');
   const liveCourses = courses.filter((c) => c.courseType === 'LIVE');
 
+  // Mobile navigation links based on auth state
+  const mobileNavLinks = isLoaded && user
+    ? [
+        { href: '/courses', label: 'Courses' },
+        { href: '/student/dashboard', label: 'Dashboard' },
+        { href: '/student/profile', label: 'Profile', primary: true },
+      ]
+    : [
+        { href: '/courses', label: 'Courses' },
+        { href: '/sign-in', label: 'Sign In' },
+        { href: '/sign-up', label: 'Get Started', primary: true },
+      ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b">
-        <nav className="container mx-auto px-6 py-4">
+      <header className="bg-white border-b relative z-60">
+        <nav className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-gradient">
+            <Link href="/" className="text-xl sm:text-2xl font-bold text-gradient">
               Classes
             </Link>
-            <div className="flex items-center gap-4">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-4">
               <Link href="/courses" className="text-primary-600 font-semibold">
                 Courses
               </Link>
@@ -90,49 +106,48 @@ export default function CoursesPage() {
                 </>
               )}
             </div>
+
+            {/* Mobile Navigation */}
+            <MobileNav links={mobileNavLinks} />
           </div>
         </nav>
       </header>
 
       {/* Page Header */}
-      <section className="bg-gradient-to-br from-primary-600 to-secondary-600 text-white py-16 px-6">
+      <section className="bg-gradient-to-br from-primary-600 to-secondary-600 text-white py-12 sm:py-16 px-4 sm:px-6">
         <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-4">Explore Our Courses</h1>
-          <p className="text-xl opacity-90">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Explore Our Courses</h1>
+          <p className="text-base sm:text-lg md:text-xl opacity-90">
             Choose between pre-recorded courses or live interactive classes
           </p>
         </div>
       </section>
 
       {/* Tabs */}
-      <div className="container mx-auto px-6 py-8">
-        <div className="flex justify-center gap-4 mb-12">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
           <button
             onClick={() => setActiveTab('recorded')}
-            className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all ${
+            className={`flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all text-sm sm:text-base ${
               activeTab === 'recorded'
-                ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-lg'
-                : 'bg-white text-gray-700 hover:bg-gray-100'
+                ? 'bg-primary-600 text-white shadow-lg'
+                : 'bg-white text-gray-700 hover:bg-gray-50'
             }`}
           >
-            <div className="flex items-center gap-2">
-              <Video className="w-5 h-5" />
-              Pre-Recorded Courses
-            </div>
+            <Video className="w-4 h-4 sm:w-5 sm:h-5" />
+            Pre-Recorded Courses
           </button>
           
           <button
             onClick={() => setActiveTab('live')}
-            className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all ${
+            className={`flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all text-sm sm:text-base ${
               activeTab === 'live'
-                ? 'bg-gradient-to-r from-secondary-600 to-secondary-700 text-white shadow-lg'
-                : 'bg-white text-gray-700 hover:bg-gray-100'
+                ? 'bg-secondary-600 text-white shadow-lg'
+                : 'bg-white text-gray-700 hover:bg-gray-50'
             }`}
           >
-            <div className="flex items-center gap-2">
-              <Calendar className="w-5 h-5" />
-              Live Courses
-            </div>
+            <Calendar className="w-5 h-5" />
+            Live Courses
           </button>
         </div>
 

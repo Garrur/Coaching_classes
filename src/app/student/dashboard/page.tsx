@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Video, Calendar, Clock, IndianRupee, BookOpen, LogOut } from 'lucide-react';
+import MobileNav from '@/components/MobileNav';
 
 export default function StudentDashboard() {
   const { user, isLoaded } = useUser();
@@ -40,6 +41,13 @@ export default function StudentDashboard() {
     return diff;
   };
 
+  const mobileNavLinks = [
+    { href: '/courses', label: 'Browse Courses' },
+    { href: '/student/dashboard', label: 'My Dashboard' },
+    { href: '/student/payment-history', label: 'Payments' },
+    { href: '/student/profile', label: 'Profile', primary: true },
+  ];
+
   if (!isLoaded || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -51,13 +59,15 @@ export default function StudentDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-50">
-        <nav className="container mx-auto px-6 py-4">
+      <header className="bg-white border-b sticky top-0 z-60">
+        <nav className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-gradient">
+            <Link href="/" className="text-xl sm:text-2xl font-bold text-gradient">
               Classes
             </Link>
-            <div className="flex items-center gap-6">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-6">
               <Link href="/courses" className="text-gray-700 hover:text-primary-600 transition">
                 Browse Courses
               </Link>
@@ -71,17 +81,20 @@ export default function StudentDashboard() {
                 Profile
               </Link>
             </div>
+
+            {/* Mobile Navigation */}
+            <MobileNav links={mobileNavLinks} />
           </div>
         </nav>
       </header>
 
       {/* Dashboard Content */}
-      <div className="container mx-auto px-6 py-12">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
             Welcome back, <span className="text-gradient">{user?.firstName || 'Student'}</span>!
           </h1>
-          <p className="text-gray-600">Continue your learning journey</p>
+          <p className="text-sm sm:text-base text-gray-600">Continue your learning journey</p>
         </div>
 
         {/* Enrollments */}

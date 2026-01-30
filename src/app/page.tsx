@@ -1,40 +1,54 @@
 import Link from 'next/link';
 import { ArrowRight, Video, Calendar, CheckCircle, Phone, MessageCircle } from 'lucide-react';
+import MobileNav from '@/components/MobileNav';
 
 export default async function HomePage() {
+  const navLinks = [
+    { href: '/courses', label: 'Courses' },
+    { href: '/sign-in', label: 'Sign In' },
+    { href: '/sign-up', label: 'Get Started', primary: true },
+  ];
+
   return (
     <div className="min-h-screen">
-      {/* Header/Navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
-        <nav className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-gradient">
-              Classes
-            </Link>
-            <div className="flex items-center gap-4">
-              <Link href="/courses" className="text-gray-700 hover:text-primary-600 transition">
-                Courses
+      {/* Main Content - Isolated stacking context */}
+      <div style={{ isolation: 'isolate', position: 'relative' }}>
+        {/* Header/Navbar */}
+        <header className="fixed top-0 left-0 right-0 glass border-b border-white/10 bg-white" style={{ zIndex: 50 }}>
+          <nav className="container mx-auto px-4 sm:px-6 py-4">
+            <div className="flex items-center justify-between">
+              <Link href="/" className="text-xl sm:text-2xl font-bold text-gradient">
+                Classes
               </Link>
-              <Link href="/sign-in" className="text-gray-700 hover:text-primary-600 transition">
-                Sign In
-              </Link>
-              <Link href="/sign-up" className="btn btn-primary">
-                Get Started
-              </Link>
-            </div>
-          </div>
-        </nav>
-      </header>
+              
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex items-center gap-4">
+                <Link href="/courses" className="text-gray-700 hover:text-primary-600 transition">
+                  Courses
+                </Link>
+                <Link href="/sign-in" className="text-gray-700 hover:text-primary-600 transition">
+                  Sign In
+                </Link>
+                <Link href="/sign-up" className="btn btn-primary">
+                  Get Started
+                </Link>
+              </div>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 bg-gradient-to-br from-primary-50 via-white to-secondary-50">
+              {/* Mobile Navigation */}
+              <MobileNav links={navLinks} />
+            </div>
+          </nav>
+        </header>
+
+        {/* Hero Section */}
+        <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 bg-gradient-to-br from-primary-50 via-white to-secondary-50">
         <div className="container mx-auto text-center">
           <div className="animate-fade-in">
-            <h1 className="text-6xl md:text-7xl font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
               Learn with{' '}
               <span className="text-gradient">Classes</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto px-4">
               Expert coaching by <span className="font-semibold text-primary-600">Tutor</span>
               <br />
               Choose from pre-recorded courses or join live interactive classes
@@ -228,6 +242,7 @@ export default async function HomePage() {
           </p>
         </div>
       </footer>
+      </div> {/* End Main Content Wrapper */}
     </div>
   );
 }

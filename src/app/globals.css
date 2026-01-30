@@ -51,6 +51,27 @@
   .label {
     @apply block text-sm font-medium text-gray-700 mb-2;
   }
+
+  input:focus,
+  textarea:focus {
+    outline-color: theme('colors.primary.500');
+  }
+
+  /* Remove gray squares on button clicks */
+  button {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
+
+  button:focus,
+  button:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  button::-moz-focus-inner {
+    border: 0;
+  }
 }
 
 @layer utilities {
@@ -68,6 +89,21 @@
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+  }
+
+  /* Mobile touch target - minimum 44px for accessibility */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent text selection on mobile for UI elements */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .animate-float {
