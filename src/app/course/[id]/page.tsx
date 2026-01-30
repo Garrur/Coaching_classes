@@ -78,7 +78,7 @@ export default function CoursePage() {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: orderData.amount,
         currency: orderData.currency,
-        name: 'Galaxy Classes',
+        name: 'Classes',
         description: course.name,
         order_id: orderData.orderId,
         handler: async function (response: any) {
@@ -144,7 +144,7 @@ export default function CoursePage() {
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold text-gradient">
-              Galaxy Classes
+              Classes
             </Link>
             <div className="flex items-center gap-4">
               <Link href="/courses" className="text-gray-700 hover:text-primary-600 transition">

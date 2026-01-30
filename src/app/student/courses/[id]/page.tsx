@@ -101,7 +101,7 @@ export default function StudentCoursePage() {
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold text-gradient">
-              Galaxy Classes
+              Classes
             </Link>
             <Link href="/student/dashboard" className="btn btn-primary">
               Dashboard

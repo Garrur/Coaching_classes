@@ -1,6 +1,6 @@
-# Galaxy Classes – Full-Scale Coaching Website
+# Classes– Full-Scale Coaching Website
 
-> **Professional coaching platform by Rahul Raj** with dual course systems: pre-recorded courses (6-month validity) and live scheduled classes.
+> **Professional coaching platform** with dual course systems: pre-recorded courses (6-month validity) and live scheduled classes.
 
 ![Next.js](https://img.shields.io/badge/Next.js-14-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green) ![Razorpay](https://img.shields.io/badge/Razorpay-Integrated-blue)
 
@@ -349,7 +349,7 @@ Add all `.env.local` variables to Vercel dashboard
 
 ## 📝 License
 
-© 2026 Galaxy Classes by Rahul Raj. All rights reserved.
+© 2026  Classes. All rights reserved.
 
 ---
 
@@ -357,4 +357,4 @@ Add all `.env.local` variables to Vercel dashboard
 
 For issues or questions, contact the development team.
 
-**Built with ❤️ for Galaxy Classes**
+**Built with ❤️ for  Classes**

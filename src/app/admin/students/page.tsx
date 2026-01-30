@@ -70,7 +70,7 @@ export default function AdminStudentsPage() {
       <header className="bg-white border-b">
         <nav className="container mx-auto px-6 py-4">
           <Link href="/admin/dashboard" className="text-2xl font-bold text-gradient">
-            Galaxy Classes Admin
+            ClassesAdmin
           </Link>
         </nav>
       </header>

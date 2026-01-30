@@ -6,9 +6,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Galaxy Classes by Rahul Raj - Online Coaching Platform",
-  description: "Join Galaxy Classes for premium pre-recorded courses and live interactive classes. Expert coaching by Rahul Raj.",
-  keywords: "online coaching, live classes, video courses, education, Galaxy Classes, Rahul Raj",
+  title: "Classes- Online Coaching Platform",
+  description: "Join Classesfor premium pre-recorded courses and live interactive classes. Expert coaching by Tutor.",
+  keywords: "online coaching, live classes, video courses, education, Classes, Tutor",
 };
 
 export default function RootLayout({

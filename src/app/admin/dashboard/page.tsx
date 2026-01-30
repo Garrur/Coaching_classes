@@ -81,7 +81,7 @@ export default function AdminDashboard() {
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold text-gradient">
-              Galaxy Classes Admin
+              ClassesAdmin
             </Link>
             <div className="flex items-center gap-6">
               <Link href="/admin/dashboard" className="text-primary-600 font-semibold">

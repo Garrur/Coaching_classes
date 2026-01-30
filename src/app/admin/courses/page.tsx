@@ -55,7 +55,7 @@ export default function AdminCoursesPage() {
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/admin/dashboard" className="text-2xl font-bold text-gradient">
-              Galaxy Classes Admin
+              ClassesAdmin
             </Link>
             <Link href="/admin/courses/new" className="btn btn-primary">
               Create New Course

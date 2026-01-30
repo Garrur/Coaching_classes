@@ -9,7 +9,7 @@ export default async function HomePage() {
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold text-gradient">
-              Galaxy Classes
+              Classes
             </Link>
             <div className="flex items-center gap-4">
               <Link href="/courses" className="text-gray-700 hover:text-primary-600 transition">
@@ -32,10 +32,10 @@ export default async function HomePage() {
           <div className="animate-fade-in">
             <h1 className="text-6xl md:text-7xl font-bold mb-6">
               Learn with{' '}
-              <span className="text-gradient">Galaxy Classes</span>
+              <span className="text-gradient">Classes</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Expert coaching by <span className="font-semibold text-primary-600">Rahul Raj</span>
+              Expert coaching by <span className="font-semibold text-primary-600">Tutor</span>
               <br />
               Choose from pre-recorded courses or join live interactive classes
             </p>
@@ -110,7 +110,7 @@ export default async function HomePage() {
       <section className="py-20 px-6 bg-white">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
-            Why Choose <span className="text-gradient">Galaxy Classes?</span>
+            Why Choose <span className="text-gradient">Classes?</span>
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -120,7 +120,7 @@ export default async function HomePage() {
               </div>
               <h3 className="text-xl font-bold mb-3">Expert Instruction</h3>
               <p className="text-gray-600">
-                Learn from Rahul Raj's years of teaching experience and proven methods
+                Learn from Tutor's years of teaching experience and proven methods
               </p>
             </div>
 
@@ -210,9 +210,9 @@ export default async function HomePage() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-6">
         <div className="container mx-auto text-center">
-          <p className="text-2xl font-bold text-gradient mb-4">Galaxy Classes</p>
+          <p className="text-2xl font-bold text-gradient mb-4">Classes</p>
           <p className="text-gray-400 mb-6">
-            by Rahul Raj - Premium Online Coaching
+            by Tutor Name- Premium Online Coaching
           </p>
           <div className="flex justify-center gap-6 text-sm text-gray-400">
             <Link href="/courses" className="hover:text-white transition">
@@ -224,7 +224,7 @@ export default async function HomePage() {
             </Link>
           </div>
           <p className="text-gray-500 text-sm mt-8">
-            © 2026 Galaxy Classes. All rights reserved.
+            © 2026 Classes. All rights reserved.
           </p>
         </div>
       </footer>

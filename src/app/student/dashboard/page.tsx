@@ -55,7 +55,7 @@ export default function StudentDashboard() {
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold text-gradient">
-              Galaxy Classes
+              Classes
             </Link>
             <div className="flex items-center gap-6">
               <Link href="/courses" className="text-gray-700 hover:text-primary-600 transition">
