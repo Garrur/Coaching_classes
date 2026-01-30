@@ -198,20 +198,23 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="mt-8 pt-6 border-t flex gap-4">
+                <div className="mt-8 pt-6 border-t space-y-3">
                   <a 
                     href={`https://accounts.clerk.dev/user`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary flex-1"
+                    className="btn btn-primary w-full text-center block"
                   >
                     Edit Profile in Clerk
                   </a>
                   {profile?.role === 'ADMIN' && (
-                    <Link href="/admin/dashboard" className="btn btn-secondary flex-1">
+                    <Link href="/admin/dashboard" className="btn btn-secondary w-full text-center block">
                       Admin Dashboard
                     </Link>
                   )}
+                  <Link href="/sign-out" className="btn bg-red-500 text-white hover:bg-red-600 w-full text-center block">
+                    Sign Out
+                  </Link>
                 </div>
               </div>
             </div>
