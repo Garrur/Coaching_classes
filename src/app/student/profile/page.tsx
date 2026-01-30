@@ -72,9 +72,6 @@ export default function ProfilePage() {
               <Link href="/student/profile" className="text-primary-600 font-semibold">
                 Profile
               </Link>
-              <Link href="/sign-out" className="btn btn-outline">
-                Sign Out
-              </Link>
             </div>
           </div>
         </nav>
