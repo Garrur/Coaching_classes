@@ -3,6 +3,9 @@ import { currentUser } from '@clerk/nextjs/server';
 import dbConnect from '@/lib/db';
 import User from '@/models/User';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 /**
  * Manual user sync endpoint
  * Visit this endpoint while logged in to sync your Clerk user to MongoDB
