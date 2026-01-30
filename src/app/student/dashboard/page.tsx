@@ -67,6 +67,9 @@ export default function StudentDashboard() {
               <Link href="/student/payment-history" className="text-gray-700 hover:text-primary-600 transition">
                 Payments
               </Link>
+              <Link href="/student/profile" className="text-gray-700 hover:text-primary-600 transition">
+                Profile
+              </Link>
               <button
                 onClick={() => router.push('/sign-out')}
                 className="flex items-center gap-2 text-gray-700 hover:text-red-600 transition"
