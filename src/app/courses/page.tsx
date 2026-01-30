@@ -2,9 +2,31 @@
 
 import { useState, useEffect } from 'react';
 import { useUser } from '@clerk/nextjs';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Video, Calendar, Clock, IndianRupee, ArrowRight } from 'lucide-react';
 import MobileNav from '@/components/MobileNav';
+
+interface Video {
+  _id: string;
+  title: string;
+  url?: string;
+  duration?: number;
+}
+
+interface Module {
+  _id: string;
+  title: string;
+  description?: string;
+  videos?: Video[];
+}
+
+interface Schedule {
+  _id: string;
+  day: string;
+  time: string;
+  duration?: number;
+}
 
 interface Course {
   _id: string;
@@ -16,38 +38,49 @@ interface Course {
   duration?: number;
   startDate?: string;
   endDate?: string;
-  videos?: any[];
-  modules?: any[];
-  schedule?: any[];
+  videos?: Video[];
+  modules?: Module[];
+  schedule?: Schedule[];
   thumbnail?: string;
 }
 
 export default function CoursesPage() {
   const { user, isLoaded } = useUser();
+  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<'recorded' | 'live'>('recorded');
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Check URL params for default tab
-    const params = new URLSearchParams(window.location.search);
-    const tab = params.get('tab');
+    const tab = searchParams.get('tab');
     if (tab === 'live') setActiveTab('live');
 
     fetchCourses();
-  }, []);
+  }, [searchParams]);
 
   const fetchCourses = async () => {
     try {
       setLoading(true);
+      setError(null);
+      
       const res = await fetch('/api/courses');
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
       const data = await res.json();
       
       if (data.success) {
         setCourses(data.courses);
+      } else {
+        setError(data.message || 'Failed to load courses');
       }
     } catch (error) {
       console.error('Error fetching courses:', error);
+      setError('Unable to load courses. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -152,7 +185,21 @@ export default function CoursesPage() {
         </div>
 
         {/* Course Grid */}
-        {loading ? (
+        {error ? (
+          <div className="text-center py-20">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
+              <div className="text-red-600 text-5xl mb-4">⚠️</div>
+              <h3 className="text-xl font-bold text-red-900 mb-2">Error Loading Courses</h3>
+              <p className="text-red-700 mb-6">{error}</p>
+              <button
+                onClick={fetchCourses}
+                className="btn btn-primary"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        ) : loading ? (
           <div className="text-center py-20">
             <div className="inline-block animate-spin w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full"></div>
             <p className="mt-4 text-gray-600">Loading courses...</p>
@@ -232,7 +279,7 @@ export default function CoursesPage() {
                         <div className="space-y-2 mb-6">
                           <div className="flex items-center gap-2 text-sm text-gray-700">
                             <Clock className="w-4 h-4 text-secondary-600" />
-                            <span>Duration: {course.duration} days</span>
+                            <span>Duration: {course.duration ?? 'N/A'} days</span>
                           </div>
                           <div className="flex items-center gap-2 text-sm text-gray-700">
                             <Calendar className="w-4 h-4 text-secondary-600" />
@@ -272,7 +319,7 @@ export default function CoursesPage() {
       <footer className="bg-gray-900 text-white py-12 px-6 mt-20">
         <div className="container mx-auto text-center">
           <p className="text-2xl font-bold text-gradient mb-4">Classes</p>
-          <p className="text-gray-400">© 2026 Classes. All rights reserved.</p>
+          <p className="text-gray-400">© {new Date().getFullYear()} Classes. All rights reserved.</p>
         </div>
       </footer>
     </div>

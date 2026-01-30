@@ -18,6 +18,7 @@ export default function MobileNav({ links }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerButtonRef = useRef<HTMLButtonElement>(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -30,6 +31,8 @@ export default function MobileNav({ links }: MobileNavProps) {
       closeButtonRef.current?.focus();
     } else {
       document.body.style.overflow = 'unset';
+      // Return focus to hamburger button when menu closes
+      triggerButtonRef.current?.focus();
     }
     return () => {
       document.body.style.overflow = 'unset';
@@ -91,6 +94,7 @@ export default function MobileNav({ links }: MobileNavProps) {
     <>
       {/* Hamburger Button */}
       <button
+        ref={triggerButtonRef}
         onClick={toggleMenu}
         type="button"
         className="lg:hidden p-2 text-gray-700 hover:text-primary-600 transition focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
@@ -165,8 +169,8 @@ export default function MobileNav({ links }: MobileNavProps) {
         {/* Navigation Links */}
         <nav className="p-6" aria-label="Mobile navigation">
           <ul className="space-y-4">
-            {links.map((link, index) => (
-              <li key={index}>
+            {links.map((link) => (
+              <li key={link.href}>
                 {link.primary ? (
                   <Link
                     href={link.href}

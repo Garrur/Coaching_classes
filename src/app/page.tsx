@@ -238,7 +238,7 @@ export default async function HomePage() {
             </Link>
           </div>
           <p className="text-gray-500 text-sm mt-8">
-            © 2026 Classes. All rights reserved.
+            © {new Date().getFullYear()} Classes. All rights reserved.
           </p>
         </div>
       </footer>
