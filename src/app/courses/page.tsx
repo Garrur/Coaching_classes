@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Video, Calendar, Clock, IndianRupee, ArrowRight } from 'lucide-react';
 
@@ -21,6 +22,7 @@ interface Course {
 }
 
 export default function CoursesPage() {
+  const { user, isLoaded } = useUser();
   const [activeTab, setActiveTab] = useState<'recorded' | 'live'>('recorded');
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
@@ -66,12 +68,27 @@ export default function CoursesPage() {
               <Link href="/courses" className="text-primary-600 font-semibold">
                 Courses
               </Link>
-              <Link href="/sign-in" className="text-gray-700 hover:text-primary-600 transition">
-                Sign In
-              </Link>
-              <Link href="/sign-up" className="btn btn-primary">
-                Get Started
-              </Link>
+              {isLoaded && user ? (
+                // Logged in navigation
+                <>
+                  <Link href="/student/dashboard" className="text-gray-700 hover:text-primary-600 transition">
+                    Dashboard
+                  </Link>
+                  <Link href="/student/profile" className="btn btn-primary">
+                    Profile
+                  </Link>
+                </>
+              ) : (
+                // Logged out navigation
+                <>
+                  <Link href="/sign-in" className="text-gray-700 hover:text-primary-600 transition">
+                    Sign In
+                  </Link>
+                  <Link href="/sign-up" className="btn btn-primary">
+                    Get Started
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </nav>
