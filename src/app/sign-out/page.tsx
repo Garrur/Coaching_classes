@@ -11,8 +11,14 @@ export default function SignOutPage() {
 
   useEffect(() => {
     const handleSignOut = async () => {
-      await signOut();
-      router.push('/');
+      try {
+        await signOut();
+      } catch (error) {
+        console.error('Sign out failed:', error);
+      } finally {
+        // Always redirect to home, even if sign-out fails
+        router.push('/');
+      }
     };
     
     // Auto sign out after 1 second
@@ -31,7 +37,10 @@ export default function SignOutPage() {
         <p className="text-gray-600">Please wait while we log you out securely.</p>
         
         <div className="mt-8">
-          <div className="inline-block animate-spin w-8 h-8 border-4 border-primary-600 border-t-transparent rounded-full"></div>
+          <div role="status" aria-label="Signing out">
+            <div className="inline-block animate-spin w-8 h-8 border-4 border-primary-600 border-t-transparent rounded-full"></div>
+            <span className="sr-only">Signing out...</span>
+          </div>
         </div>
       </div>
     </div>
